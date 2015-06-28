@@ -78,10 +78,10 @@
         return _updateString;
     
     NSMutableString *updateString = [NSMutableString new];
-    if (self.applyHue)          [updateString appendFormat:@" hue:%@",          @(self.hue)];
-    if (self.applySaturation)   [updateString appendFormat:@" saturation:%@",   @(self.saturation)];
-    if (self.applyBrightness)   [updateString appendFormat:@" brightness:%@",   @(self.brightness)];
-    if (self.applyKelvin)       [updateString appendFormat:@" kelvin:%@ ",      @(self.kelvin)];
+    if (self.applyHue)              [updateString appendFormat:@"hue:%@",                                               @(self.hue)];
+    if (self.applySaturation)       [updateString appendFormat:@"%@saturation:%@",  (updateString.length ? @" " : @""), @(self.saturation)];
+    if (self.applyBrightness)       [updateString appendFormat:@"%@brightness:%@",  (updateString.length ? @" " : @""), @(self.brightness)];
+    if (self.applyKelvin)           [updateString appendFormat:@"%@kelvin:%@ ",     (updateString.length ? @" " : @""), @(self.kelvin)];
     
     return [updateString copy];
 }
