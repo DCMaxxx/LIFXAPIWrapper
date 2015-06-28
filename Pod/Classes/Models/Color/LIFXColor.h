@@ -19,7 +19,7 @@
  * @brief The hue component of the color
  * @discussion hue range: [0-360]
  */
-@property (assign, nonatomic) CGFloat hue;
+@property (assign, nonatomic) NSUInteger hue;
 
 /**
  * @brief The saturation component of the color

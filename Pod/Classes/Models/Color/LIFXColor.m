@@ -14,7 +14,7 @@
 {
     LIFXColor *color = [super modelWithDictionary:dictionary];
     
-    color.hue = [dictionary[@"hue"] doubleValue];
+    color.hue = [dictionary[@"hue"] integerValue];
     color.saturation = [dictionary[@"saturation"] doubleValue];
     color.kelvin = [dictionary[@"kelvin"] integerValue];
 
