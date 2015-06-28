@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "LIFXAPIWrapper"
-  s.version          = "0.1.0"
+  s.version          = "0.0.2"
   s.summary          = "An Objective-C wrapper around the LIFX HTTP API"
   s.homepage         = "https://github.com/DCMaxxx/LIFXAPIWrapper"
   s.license          = 'MIT'
