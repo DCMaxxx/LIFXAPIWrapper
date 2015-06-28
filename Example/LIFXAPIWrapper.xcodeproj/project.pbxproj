@@ -13,10 +13,11 @@
 		6003F598195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F596195388D20070C39A /* InfoPlist.strings */; };
 		6003F59A195388D20070C39A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F599195388D20070C39A /* main.m */; };
 		6003F59E195388D20070C39A /* LIFXAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F59D195388D20070C39A /* LIFXAppDelegate.m */; };
-		6003F5A7195388D20070C39A /* LIFXViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5A6195388D20070C39A /* LIFXViewController.m */; };
+		6003F5A7195388D20070C39A /* TargetListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5A6195388D20070C39A /* TargetListViewController.m */; };
 		6003F5A9195388D20070C39A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5A8195388D20070C39A /* Images.xcassets */; };
 		78414678E262230AE8F43BC7 /* libPods-LIFXAPIWrapper_Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66B8146DE4335024A002D37A /* libPods-LIFXAPIWrapper_Example.a */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
+		9C9749341B3F35A70074E4D7 /* TargetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C9749331B3F35A70074E4D7 /* TargetViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,12 +34,14 @@
 		6003F59B195388D20070C39A /* LIFXAPIWrapper-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LIFXAPIWrapper-Prefix.pch"; sourceTree = "<group>"; };
 		6003F59C195388D20070C39A /* LIFXAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LIFXAppDelegate.h; sourceTree = "<group>"; };
 		6003F59D195388D20070C39A /* LIFXAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LIFXAppDelegate.m; sourceTree = "<group>"; };
-		6003F5A5195388D20070C39A /* LIFXViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LIFXViewController.h; sourceTree = "<group>"; };
-		6003F5A6195388D20070C39A /* LIFXViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LIFXViewController.m; sourceTree = "<group>"; };
+		6003F5A5195388D20070C39A /* TargetListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TargetListViewController.h; sourceTree = "<group>"; };
+		6003F5A6195388D20070C39A /* TargetListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TargetListViewController.m; sourceTree = "<group>"; };
 		6003F5A8195388D20070C39A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		66B8146DE4335024A002D37A /* libPods-LIFXAPIWrapper_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LIFXAPIWrapper_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A715B7D63A7F9D27CAC816D /* Pods-LIFXAPIWrapper_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LIFXAPIWrapper_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-LIFXAPIWrapper_Example/Pods-LIFXAPIWrapper_Example.release.xcconfig"; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		9C9749321B3F35A70074E4D7 /* TargetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TargetViewController.h; sourceTree = "<group>"; };
+		9C9749331B3F35A70074E4D7 /* TargetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TargetViewController.m; sourceTree = "<group>"; };
 		D398A07CFD00ED4694224EF1 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -90,13 +93,9 @@
 		6003F593195388D20070C39A /* Example for LIFXAPIWrapper */ = {
 			isa = PBXGroup;
 			children = (
-				6003F59C195388D20070C39A /* LIFXAppDelegate.h */,
-				6003F59D195388D20070C39A /* LIFXAppDelegate.m */,
-				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
-				6003F5A5195388D20070C39A /* LIFXViewController.h */,
-				6003F5A6195388D20070C39A /* LIFXViewController.m */,
-				6003F5A8195388D20070C39A /* Images.xcassets */,
-				6003F594195388D20070C39A /* Supporting Files */,
+				9C9749351B3F414F0074E4D7 /* ViewControllers */,
+				9C9749361B3F42190074E4D7 /* Other */,
+				9C9749371B3F42220074E4D7 /* Resources */,
 			);
 			name = "Example for LIFXAPIWrapper";
 			path = LIFXAPIWrapper;
@@ -121,6 +120,36 @@
 				D398A07CFD00ED4694224EF1 /* LICENSE */,
 			);
 			name = "Podspec Metadata";
+			sourceTree = "<group>";
+		};
+		9C9749351B3F414F0074E4D7 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				6003F5A5195388D20070C39A /* TargetListViewController.h */,
+				6003F5A6195388D20070C39A /* TargetListViewController.m */,
+				9C9749321B3F35A70074E4D7 /* TargetViewController.h */,
+				9C9749331B3F35A70074E4D7 /* TargetViewController.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		9C9749361B3F42190074E4D7 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				6003F59C195388D20070C39A /* LIFXAppDelegate.h */,
+				6003F59D195388D20070C39A /* LIFXAppDelegate.m */,
+			);
+			name = Other;
+			sourceTree = "<group>";
+		};
+		9C9749371B3F42220074E4D7 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
+				6003F5A8195388D20070C39A /* Images.xcassets */,
+				6003F594195388D20070C39A /* Supporting Files */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		EBBFE5788A571D0F92BAC048 /* Pods */ = {
@@ -234,8 +263,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				6003F59E195388D20070C39A /* LIFXAppDelegate.m in Sources */,
-				6003F5A7195388D20070C39A /* LIFXViewController.m in Sources */,
+				6003F5A7195388D20070C39A /* TargetListViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
+				9C9749341B3F35A70074E4D7 /* TargetViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,6 +8,6 @@
 
 @import UIKit;
 
-@interface LIFXViewController : UIViewController
+@interface TargetListViewController : UITableViewController
 
 @end
