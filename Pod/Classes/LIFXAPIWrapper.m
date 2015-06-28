@@ -67,7 +67,8 @@ static NSString * const LIFXAPIBaseURL = @"https://api.lifx.com/v1beta1/lights/"
                          onFailure:(LIFXAPIWrapperFailureBlock)onFailure
 {
     [self.manager GET:[self escapedTargetSelector:nil] parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        onCompletion([LIFXLight arrayOfModelsWithDictionaries:[self arrayWrappedResponse:responseObject]]);
+        if (onCompletion)
+            onCompletion([LIFXLight arrayOfModelsWithDictionaries:[self arrayWrappedResponse:responseObject]]);
     } failure:DefaultLIFXAPIWrapperFailureBlock];
 }
 
@@ -76,7 +77,8 @@ static NSString * const LIFXAPIBaseURL = @"https://api.lifx.com/v1beta1/lights/"
                   onFailure:(LIFXAPIWrapperFailureBlock)onFailure
 {
     [self.manager GET:[self escapedTargetSelector:target] parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        onCompletion([LIFXLight arrayOfModelsWithDictionaries:[self arrayWrappedResponse:responseObject]]);
+        if (onCompletion)
+            onCompletion([LIFXLight arrayOfModelsWithDictionaries:[self arrayWrappedResponse:responseObject]]);
     } failure:DefaultLIFXAPIWrapperFailureBlock];
 }
 
@@ -85,7 +87,8 @@ static NSString * const LIFXAPIBaseURL = @"https://api.lifx.com/v1beta1/lights/"
                      onFailure:(LIFXAPIWrapperFailureBlock)onFailure
 {
     [self.manager POST:[self escaptedTargetSelector:target withAction:@"toggle"] parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        onCompletion([LIFXTargetOperationResult arrayOfModelsWithDictionaries:[self arrayWrappedResponse:responseObject]]);
+        if (onCompletion)
+            onCompletion([LIFXTargetOperationResult arrayOfModelsWithDictionaries:[self arrayWrappedResponse:responseObject]]);
     } failure:DefaultLIFXAPIWrapperFailureBlock];
 }
 
@@ -109,7 +112,8 @@ static NSString * const LIFXAPIBaseURL = @"https://api.lifx.com/v1beta1/lights/"
 {
     NSDictionary *parameters = @{@"state": [LIFXLight powerStateStringFromPowerStatus:powerStatus]};
     [self.manager PUT:[self escaptedTargetSelector:target withAction:@"power"] parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
-        onCompletion([LIFXTargetOperationResult arrayOfModelsWithDictionaries:[self arrayWrappedResponse:responseObject]]);
+        if (onCompletion)
+            onCompletion([LIFXTargetOperationResult arrayOfModelsWithDictionaries:[self arrayWrappedResponse:responseObject]]);
     } failure:DefaultLIFXAPIWrapperFailureBlock];
 }
 
@@ -138,7 +142,8 @@ static NSString * const LIFXAPIBaseURL = @"https://api.lifx.com/v1beta1/lights/"
 
 {
     [self.manager PUT:[self escaptedTargetSelector:target withAction:@"color"] parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
-        onCompletion([LIFXTargetOperationResult arrayOfModelsWithDictionaries:[self arrayWrappedResponse:responseObject]]);
+        if (onCompletion)
+            onCompletion([LIFXTargetOperationResult arrayOfModelsWithDictionaries:[self arrayWrappedResponse:responseObject]]);
     } failure:DefaultLIFXAPIWrapperFailureBlock];
 }
 
