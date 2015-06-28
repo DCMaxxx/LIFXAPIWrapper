@@ -27,7 +27,7 @@ static NSString * const LIFXLightDateFormat = @"yyyy-MM-dd'T'HH:mm.ss.SSZZ";
 {
     LIFXLight *light = [super modelWithDictionary:dictionary];
     
-    light.location = [LIFXGroup modelWithDictionary:dictionary[@"location"]];
+    light.location = [LIFXLocation modelWithDictionary:dictionary[@"location"]];
     light.group = [LIFXGroup modelWithDictionary:dictionary[@"group"]];
     light.label = dictionary[@"label"];
     

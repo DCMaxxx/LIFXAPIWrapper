@@ -21,7 +21,7 @@
 /**
  * @brief The location of the light : Home, work, etc.
  */
-@property (strong, nonatomic) LIFXGroup *location;
+@property (strong, nonatomic) LIFXLocation *location;
 
 /**
  * @brief The group of the light : Kitche, Bed room, etc.
