@@ -12,24 +12,24 @@ Here's a quickie :
 ```obj-c
 - (void)doSomeStuffWithTheLIFXAPI
 {
-LIFXAPIWrapper *APIWrapper = [LIFXAPIWrapper sharedAPIWrapper];
-[APIWrapper setOAuthToken:@"Your-OAuth-Token"]; // See below how to generate one
+    LIFXAPIWrapper *APIWrapper = [LIFXAPIWrapper sharedAPIWrapper];
+    [APIWrapper setOAuthToken:@"Your-OAuth-Token"]; // See below how to generate one
 
-[APIWrapper getAllLightsWithCompletion:^(NSArray *lights) {
-NSLog(@"Fetched all lights: %@", lights);
+    [APIWrapper getAllLightsWithCompletion:^(NSArray *lights) {
+    NSLog(@"Fetched all lights: %@", lights);
 
-LIFXLight *light = lights.firstObject;
-LIFXTargetOperationUpdate *brightnessUpdate = [LIFXTargetOperationUpdate updateWithBrightness:.5];
-[APIWrapper applyUpdate:brightnessUpdate toTarget:light onCompletion:^(NSArray *results) {
-NSLog(@"Brightness update result : %@", results);
+    LIFXLight *light = lights.firstObject;
+    LIFXTargetOperationUpdate *brightnessUpdate = [LIFXTargetOperationUpdate updateWithBrightness:.5];
+        [APIWrapper applyUpdate:brightnessUpdate toTarget:light onCompletion:^(NSArray *results) {
+            NSLog(@"Brightness update result : %@", results);
 
-} onFailure:^(NSError *error) {
-NSLog(@"Couldn't appy update: %@", error); 
-}];
+        } onFailure:^(NSError *error) {
+            NSLog(@"Couldn't appy update: %@", error); 
+        }];
 
-} onFailure:^(NSError *error) {
-NSLog(@"Couldn't fetch lights: %@", error); 
-];
+    } onFailure:^(NSError *error) {
+        NSLog(@"Couldn't fetch lights: %@", error); 
+    }];
 }
 ```
 
