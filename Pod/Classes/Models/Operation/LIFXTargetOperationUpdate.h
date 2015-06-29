@@ -12,7 +12,7 @@
 /**
  * @brief A model representing an update that can be applied to a target by the LIFX API
  */
-@interface LIFXTargetOperationUpdate : NSObject
+@interface LIFXTargetOperationUpdate : LIFXModel
 
 /**
  * @brief Creates a new update that will be passed as-is to the LIFX API

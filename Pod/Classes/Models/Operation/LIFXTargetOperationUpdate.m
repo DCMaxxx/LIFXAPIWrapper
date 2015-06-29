@@ -21,6 +21,63 @@
 
 @implementation LIFXTargetOperationUpdate
 
++ (instancetype)modelWithDictionary:(NSDictionary *)dictionary
+{
+    LIFXTargetOperationUpdate *update = [super modelWithDictionary:dictionary];
+
+    if (dictionary[@"hue"])
+        update.hue = [dictionary[@"hue"] integerValue];
+    if (dictionary[@"saturation"])
+        update.saturation = [dictionary[@"saturation"] doubleValue];
+    if (dictionary[@"brightness"])
+        update.brightness = [dictionary[@"brightness"] doubleValue];
+    if (dictionary[@"kelvin"])
+        update.kelvin = [dictionary[@"kelvin"] integerValue];
+    if (dictionary[@"string"])
+        update.updateString = dictionary[@"string"];
+    
+    return update;
+}
+
+- (NSDictionary *)toDictionary
+{
+    NSMutableDictionary *dictionary = [NSMutableDictionary new];
+    
+    if (self.applyHue)
+        dictionary[@"hue"] = @(self.hue);
+    if (self.applySaturation)
+        dictionary[@"saturation"] = @(self.saturation);
+    if (self.applyBrightness)
+        dictionary[@"brightness"] = @(self.brightness);
+    if (self.applyKelvin)
+        dictionary[@"kelvin"] = @(self.kelvin);
+    if (self.updateString)
+        dictionary[@"string"] = self.updateString;
+    
+    return [dictionary copy];
+}
+
+- (BOOL)isEqual:(id)object
+{
+    if ([super isEqual:object])
+        return YES;
+    
+    if ([self class] != [object class])
+        return NO;
+    
+    LIFXTargetOperationUpdate *otherOperation = object;
+    return ([otherOperation.updateString isEqualToString:self.updateString])
+    || ((otherOperation.applyHue == self.applyHue && otherOperation.hue == self.hue)
+        && (otherOperation.applySaturation == self.applyBrightness && otherOperation.saturation == self.saturation)
+        && (otherOperation.applyBrightness == self.applyBrightness && otherOperation.brightness == self.brightness)
+        && (otherOperation.applyKelvin == self.applyKelvin && otherOperation.kelvin == self.kelvin));
+}
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"LIFXTargetOperationUpdate: %@", self.updateString];
+}
+
 + (instancetype)updateWithString:(NSString *)string
 {
     LIFXTargetOperationUpdate *update = [self new];
