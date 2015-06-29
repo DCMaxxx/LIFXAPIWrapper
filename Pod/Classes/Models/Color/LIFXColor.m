@@ -21,6 +21,13 @@
     return color;
 }
 
+- (NSDictionary *)toDictionary
+{
+    return @{@"hue": @(self.hue),
+             @"saturation": @(self.saturation),
+             @"kelvin": @(self.kelvin)};
+}
+
 - (BOOL)isEqual:(id)object
 {
     if ([super isEqual:object])

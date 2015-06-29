@@ -20,6 +20,12 @@
     return capabilities;
 }
 
+- (NSDictionary *)toDictionary
+{
+    return @{@"has_color": @(self.hasColor),
+             @"has_variable_color_temp": @(self.hasVariableColorTemperature)};
+}
+
 - (BOOL)isEqual:(id)object
 {
     if ([super isEqual:object])

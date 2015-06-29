@@ -23,6 +23,11 @@
     return [models copy];
 }
 
+- (NSDictionary *)toDictionary
+{
+    return @{};
+}
+
 - (BOOL)isEqual:(id)object
 {
     return object == self;

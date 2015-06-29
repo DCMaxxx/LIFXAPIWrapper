@@ -32,6 +32,13 @@
  */
 + (NSArray *)arrayOfModelsWithDictionaries:(NSArray *)dictionaries;
 
+/**
+ * @brief Returns a NSDictionary representing the model, that can be passed back to -modelWithDictionary.
+ *
+ * @return A new NSDictionary representing the model
+ */
+- (NSDictionary *)toDictionary;
+
 - (BOOL)isEqual:(id)object;
 - (NSString *)description;
 

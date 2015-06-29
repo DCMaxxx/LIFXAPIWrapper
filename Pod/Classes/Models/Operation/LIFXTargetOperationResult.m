@@ -21,6 +21,13 @@
     return operation;
 }
 
+- (NSDictionary *)toDictionary
+{
+    return @{@"id": self.lightIdentifier,
+             @"label": self.lightLabel,
+             @"status": self.status};
+}
+
 - (BOOL)isEqual:(id)object
 {
     if ([super isEqual:object])

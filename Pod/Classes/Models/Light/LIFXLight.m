@@ -32,13 +32,28 @@ static NSString * const LIFXLightDateFormat = @"yyyy-MM-dd'T'HH:mm.ss.SSZZ";
     light.productName = dictionary[@"product_name"];
     light.capabilities = [LIFXCapabilities modelWithDictionary:dictionary[@"capabilities"]];
 
-    NSDateFormatter *dateFormatter = [NSDateFormatter new];
-    dateFormatter.dateFormat = LIFXLightDateFormat;
-    dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
+    NSDateFormatter *dateFormatter = [self LIFXDateFormatter];
     light.lastSeen = [dateFormatter dateFromString:dictionary[@"last_seen"]];
     light.secondsSinceSeen = [dictionary[@"seconds_since_seen"] doubleValue];
 
     return light;
+}
+
+- (NSDictionary *)toDictionary
+{
+    return @{@"location": self.location ? [self.location toDictionary] : @{},
+             @"group": self.group ? [self.group toDictionary] : @{},
+             @"label": self.label,
+             @"connected": @(self.isConnected),
+             @"power": @(self.isOn),
+             @"color": self.color ? [self.color toDictionary] : @{},
+             @"brightness": @(self.brightness),
+             @"identifier": self.identifier,
+             @"uuid": self.uuid,
+             @"product_name": self.productName,
+             @"capabilities": self.capabilities ? [self.capabilities toDictionary] : @{},
+             @"last_seen": [[LIFXLight LIFXDateFormatter] stringFromDate:self.lastSeen],
+             @"seconds_since_seen": @(self.secondsSinceSeen)};
 }
 
 - (BOOL)isEqual:(id)object
@@ -72,6 +87,16 @@ static NSString * const LIFXLightDateFormat = @"yyyy-MM-dd'T'HH:mm.ss.SSZZ";
 + (NSString *)powerStateStringFromPowerStatus:(BOOL)powerStatus
 {
     return powerStatus ? @"on" : @"off";
+}
+
+#pragma mark - Convenience methods
+
++ (NSDateFormatter *)LIFXDateFormatter
+{
+    NSDateFormatter *dateFormatter = [NSDateFormatter new];
+    dateFormatter.dateFormat = LIFXLightDateFormat;
+    dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
+    return dateFormatter;
 }
 
 @end

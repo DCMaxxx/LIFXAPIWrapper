@@ -20,6 +20,12 @@
     return group;
 }
 
+- (NSDictionary *)toDictionary
+{
+    return @{@"id": @(self.identifier),
+             @"name": self.name};
+}
+
 - (BOOL)isEqual:(id)object
 {
     if ([super isEqual:object])
