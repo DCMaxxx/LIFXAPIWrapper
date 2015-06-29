@@ -12,17 +12,6 @@ static NSString * const LIFXLightDateFormat = @"yyyy-MM-dd'T'HH:mm.ss.SSZZ";
 
 @implementation LIFXLight
 
-+ (BOOL)powerStateStringToPowerStatus:(NSString *)powerState
-{
-    return [powerState isEqualToString:@"on"];
-    
-}
-
-+ (NSString *)powerStateStringFromPowerStatus:(BOOL)powerStatus
-{
-    return powerStatus ? @"on" : @"off";
-}
-
 + (instancetype)modelWithDictionary:(NSDictionary *)dictionary
 {
     LIFXLight *light = [super modelWithDictionary:dictionary];
@@ -72,6 +61,17 @@ static NSString * const LIFXLightDateFormat = @"yyyy-MM-dd'T'HH:mm.ss.SSZZ";
 - (NSString *)targetSelector
 {
     return [NSString stringWithFormat:@"id:%@", self.identifier];
+}
+
++ (BOOL)powerStateStringToPowerStatus:(NSString *)powerState
+{
+    return [powerState isEqualToString:@"on"];
+    
+}
+
++ (NSString *)powerStateStringFromPowerStatus:(BOOL)powerStatus
+{
+    return powerStatus ? @"on" : @"off";
 }
 
 @end
