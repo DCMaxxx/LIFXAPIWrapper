@@ -22,7 +22,7 @@
 
 - (NSDictionary *)toDictionary
 {
-    return @{@"id": @(self.identifier),
+    return @{@"id": self.identifier,
              @"name": self.name};
 }
 
