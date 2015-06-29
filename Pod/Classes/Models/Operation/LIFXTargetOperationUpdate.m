@@ -44,7 +44,7 @@
     return update;
 }
 
-+ (instancetype)updateWithHue:(CGFloat)hue
++ (instancetype)updateWithHue:(NSUInteger)hue
 {
     LIFXTargetOperationUpdate *update = [self new];
     update.hue = hue;
@@ -86,7 +86,7 @@
     return [updateString copy];
 }
 
-- (void)setHue:(CGFloat)hue
+- (void)setHue:(NSUInteger)hue
 {
     _hue = hue;
     self.applyHue = YES;

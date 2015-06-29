@@ -48,7 +48,7 @@
  * @param hue The hue to apply to the target. range : [0-360]
  * @return The newly created update
  */
-+ (instancetype)updateWithHue:(CGFloat)hue;
++ (instancetype)updateWithHue:(NSUInteger)hue;
 
 /**
  * @brief Creates a new update that will only change the saturation of the target
@@ -77,7 +77,7 @@
 /**
  * @brief The hue to apply to the target
  */
-@property (assign, nonatomic) CGFloat hue;
+@property (assign, nonatomic) NSUInteger hue;
 
 /**
  * @brief The saturation to apply to the target
