@@ -20,7 +20,7 @@ PODS:
   - AFNetworking/UIKit (2.5.4):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - LIFXAPIWrapper (0.1.0):
+  - LIFXAPIWrapper (0.0.4):
     - AFNetworking (~> 2.3)
 
 DEPENDENCIES:
@@ -32,6 +32,6 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
-  LIFXAPIWrapper: f35fe2b7fd29581b4fa86337e5ba827e474c889d
+  LIFXAPIWrapper: 5738c638994d576fa851f30737e7f036c0936a93
 
-COCOAPODS: 0.36.0
+COCOAPODS: 0.37.2

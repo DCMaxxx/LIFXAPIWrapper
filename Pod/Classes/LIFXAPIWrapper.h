@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "LIFXTargetable.h"
 #import "LIFXTargetOperationUpdate.h"
+@class LIFXScene;
 
 /**
  * @brief A type representing a block that will be called if the API operation fails
@@ -64,6 +65,26 @@ typedef void (^LIFXAPIWrapperFailureBlock)(NSError *error);
 - (void)getLightsWithTarget:(id<LIFXTargetable>)target
                onCompletion:(void (^)(NSArray *lights))onCompletion
                   onFailure:(LIFXAPIWrapperFailureBlock)onFailure;
+
+/**
+ * @brief Get a list of scenes that can be applyed with -applyScene:onCompletion:onFailure:
+ *
+ * @param onCompletion A block that will be called if the operation succeeds. 'scenes' is an array of LIFXScene
+ * @param onFailure A block that will be called if the operation fails
+ */
+- (void)getScenesWithCompletion:(void (^)(NSArray *scenes))onCompletion
+                      onFailure:(LIFXAPIWrapperFailureBlock)onFailure;
+
+/**
+ * @brief Apply a scene fetched with -getScenesWithCompletion:onFailure
+ *
+ * @param scene The scene to apply
+ * @param onCompletion A block that will be called if the operation succeeds. 'resutls' is an array of LIFXTargetOperationResult
+ * @param onFailure A block that will be called if the operation fails
+ */
+- (void)applyScene:(LIFXScene *)scene
+      onCompletion:(void (^)(NSArray *results))onCompletion
+         onFailure:(LIFXAPIWrapperFailureBlock)onFailure;
 
 /**
  * @brief Toggle a list of lights matching a given target

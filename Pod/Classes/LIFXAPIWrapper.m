@@ -9,13 +9,14 @@
 #import <AFNetworking.h>
 #import "LIFXAPIWrapper.h"
 #import "LIFXLight.h"
+#import "LIFXScene.h"
 #import "LIFXTargetOperationResult.h"
 #import "LIFXErrors.h"
 
 #define DefaultLIFXAPIWrapperFailureBlock ^(NSURLSessionDataTask *task, NSError *error) \
                                           { if (onFailure) onFailure([self errorFromNetworkError:error]); }
 
-static NSString * const LIFXAPIBaseURL = @"https://api.lifx.com/v1beta1/lights/";
+static NSString * const LIFXAPIBaseURL = @"https://api.lifx.com/v1beta1/";
 
 @interface LIFXAPIWrapper ()
 
@@ -66,7 +67,7 @@ static NSString * const LIFXAPIBaseURL = @"https://api.lifx.com/v1beta1/lights/"
 - (void)getAllLightsWithCompletion:(void (^)(NSArray *lights))onCompletion
                          onFailure:(LIFXAPIWrapperFailureBlock)onFailure
 {
-    [self.manager GET:[self escapedTargetSelector:nil] parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [self.manager GET:[self escapedLightTargetSelector:nil] parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         if (onCompletion)
             onCompletion([LIFXLight arrayOfModelsWithDictionaries:[self arrayWrappedResponse:responseObject]]);
     } failure:DefaultLIFXAPIWrapperFailureBlock];
@@ -76,9 +77,27 @@ static NSString * const LIFXAPIBaseURL = @"https://api.lifx.com/v1beta1/lights/"
                onCompletion:(void (^)(NSArray *lights))onCompletion
                   onFailure:(LIFXAPIWrapperFailureBlock)onFailure
 {
-    [self.manager GET:[self escapedTargetSelector:target] parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [self.manager GET:[self escapedLightTargetSelector:target] parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         if (onCompletion)
             onCompletion([LIFXLight arrayOfModelsWithDictionaries:[self arrayWrappedResponse:responseObject]]);
+    } failure:DefaultLIFXAPIWrapperFailureBlock];
+}
+
+- (void)getScenesWithCompletion:(void (^)(NSArray *))onCompletion onFailure:(LIFXAPIWrapperFailureBlock)onFailure
+{
+    [self.manager GET:@"scenes/" parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        if (onCompletion)
+            onCompletion([LIFXScene arrayOfModelsWithDictionaries:[self arrayWrappedResponse:responseObject]]);
+    } failure:DefaultLIFXAPIWrapperFailureBlock];
+}
+
+- (void)applyScene:(LIFXScene *)scene
+      onCompletion:(void (^)(NSArray *results))onCompletion
+         onFailure:(LIFXAPIWrapperFailureBlock)onFailure
+{
+    [self.manager PUT:[self escapedSceneSelector:scene] parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        if (onCompletion)
+            onCompletion([LIFXTargetOperationResult arrayOfModelsWithDictionaries:[self arrayWrappedResponse:responseObject]]);
     } failure:DefaultLIFXAPIWrapperFailureBlock];
 }
 
@@ -86,7 +105,7 @@ static NSString * const LIFXAPIBaseURL = @"https://api.lifx.com/v1beta1/lights/"
                   onCompletion:(void (^)(NSArray *results))onCompletion
                      onFailure:(LIFXAPIWrapperFailureBlock)onFailure
 {
-    [self.manager POST:[self escaptedTargetSelector:target withAction:@"toggle"] parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [self.manager POST:[self escaptedLightTargetSelector:target withAction:@"toggle"] parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         if (onCompletion)
             onCompletion([LIFXTargetOperationResult arrayOfModelsWithDictionaries:[self arrayWrappedResponse:responseObject]]);
     } failure:DefaultLIFXAPIWrapperFailureBlock];
@@ -111,7 +130,7 @@ static NSString * const LIFXAPIBaseURL = @"https://api.lifx.com/v1beta1/lights/"
                      onFailure:(LIFXAPIWrapperFailureBlock)onFailure
 {
     NSDictionary *parameters = @{@"state": [LIFXLight powerStateStringFromPowerStatus:powerStatus]};
-    [self.manager PUT:[self escaptedTargetSelector:target withAction:@"power"] parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+    [self.manager PUT:[self escaptedLightTargetSelector:target withAction:@"power"] parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
         if (onCompletion)
             onCompletion([LIFXTargetOperationResult arrayOfModelsWithDictionaries:[self arrayWrappedResponse:responseObject]]);
     } failure:DefaultLIFXAPIWrapperFailureBlock];
@@ -141,7 +160,7 @@ static NSString * const LIFXAPIBaseURL = @"https://api.lifx.com/v1beta1/lights/"
                     onFailure:(LIFXAPIWrapperFailureBlock)onFailure
 
 {
-    [self.manager PUT:[self escaptedTargetSelector:target withAction:@"color"] parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+    [self.manager PUT:[self escaptedLightTargetSelector:target withAction:@"color"] parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
         if (onCompletion)
             onCompletion([LIFXTargetOperationResult arrayOfModelsWithDictionaries:[self arrayWrappedResponse:responseObject]]);
     } failure:DefaultLIFXAPIWrapperFailureBlock];
@@ -157,18 +176,24 @@ static NSString * const LIFXAPIBaseURL = @"https://api.lifx.com/v1beta1/lights/"
         return @[response];
 }
 
-- (NSString *)escapedTargetSelector:(id<LIFXTargetable>)target
+- (NSString *)escapedLightTargetSelector:(id<LIFXTargetable>)target
 {
-    return [self escaptedTargetSelector:target withAction:nil];
+    return [self escaptedLightTargetSelector:target withAction:nil];
 }
 
-- (NSString *)escaptedTargetSelector:(id<LIFXTargetable>)target withAction:(NSString *)action
+- (NSString *)escaptedLightTargetSelector:(id<LIFXTargetable>)target withAction:(NSString *)action
 {
-    NSString *targetSelector = [target targetSelector] ?: @"all";
+    NSString *lightsPath = @"lights/";
+    NSString *targetSelector = [lightsPath stringByAppendingString:[target targetSelector] ?: @"all"];
     if (action.length > 0)
         targetSelector = [targetSelector stringByAppendingFormat:@"/%@", action];
         
     return [targetSelector stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLPathAllowedCharacterSet]];
+}
+
+- (NSString *)escapedSceneSelector:(LIFXScene *)scene
+{
+    return [NSString stringWithFormat:@"scenes/scene_id:%@/activate", scene.uuid];
 }
 
 - (NSString *)booleanStringFromBoolean:(BOOL)boolean
