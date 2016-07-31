@@ -173,6 +173,7 @@
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
 				A946A82CE0FC7129E1C61A60 /* Copy Pods Resources */,
+				D3852CB70D6B46FC39B3C533 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -190,7 +191,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = LIFX;
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = "Maxime de Chalendar";
 			};
 			buildConfigurationList = 6003F585195388D10070C39A /* Build configuration list for PBXProject "LIFXAPIWrapper" */;
@@ -238,6 +239,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LIFXAPIWrapper_Example/Pods-LIFXAPIWrapper_Example-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D3852CB70D6B46FC39B3C533 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LIFXAPIWrapper_Example/Pods-LIFXAPIWrapper_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F5A7C37C550E45EBC53E9BE2 /* Check Pods Manifest.lock */ = {
@@ -301,6 +317,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -365,6 +382,7 @@
 				GCC_PREFIX_HEADER = "LIFXAPIWrapper/LIFXAPIWrapper-Prefix.pch";
 				INFOPLIST_FILE = "LIFXAPIWrapper/LIFXAPIWrapper-Info.plist";
 				MODULE_NAME = ExampleApp;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -380,6 +398,7 @@
 				GCC_PREFIX_HEADER = "LIFXAPIWrapper/LIFXAPIWrapper-Prefix.pch";
 				INFOPLIST_FILE = "LIFXAPIWrapper/LIFXAPIWrapper-Info.plist";
 				MODULE_NAME = ExampleApp;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

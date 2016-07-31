@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 DCMaxxx. All rights reserved.
 //
 
-#import <AFNetworking.h>
+#import "AFNetworking.h"
 #import "LIFXAPIWrapper.h"
 #import "LIFXLight.h"
 #import "LIFXScene.h"
